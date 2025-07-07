@@ -34,6 +34,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         holder.textViewTitle.setText(task.getTitle());
         holder.textViewDescription.setText(task.getDescription());
+        holder.textViewDeadline.setText(task.getDeadline());
+        holder.textViewDuration.setText(task.getDuration());
 
         // Mark as done
         if (task.isDone()) {
@@ -68,13 +70,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     static class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewTitle, textViewDescription;
+        TextView textViewTitle, textViewDescription, textViewDeadline, textViewDuration;
         Button buttonDelete, buttonDone;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewDescription = itemView.findViewById(R.id.textViewDescription);
+            textViewDeadline = itemView.findViewById(R.id.textViewDeadline);
+            textViewDuration = itemView.findViewById(R.id.textViewDuration);
             buttonDelete = itemView.findViewById(R.id.buttonDelete);
             buttonDone = itemView.findViewById(R.id.buttonDone);
         }

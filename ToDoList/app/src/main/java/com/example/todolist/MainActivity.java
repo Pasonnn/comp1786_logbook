@@ -48,8 +48,10 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == ADD_TASK_REQUEST && resultCode == RESULT_OK && data != null) {
             String title = data.getStringExtra("task_title");
             String desc = data.getStringExtra("task_desc");
+            String deadline = data.getStringExtra("task_deadline");
+            String duration = data.getStringExtra("task_duration");
 
-            Task task = new Task(title, desc);
+            Task task = new Task(title, desc, deadline, duration);
             taskAdapter.addTask(task);
         }
     }

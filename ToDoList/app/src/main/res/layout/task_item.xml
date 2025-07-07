@@ -30,6 +30,24 @@
             android:text="Description"
             android:textSize="14sp"
             android:textColor="#444" />
+
+        <TextView
+            android:id="@+id/textViewDeadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deadline"
+            android:textSize="13sp"
+            android:textColor="#FF9800"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:id="@+id/textViewDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duration"
+            android:textSize="13sp"
+            android:textColor="#009688"
+            android:layout_marginTop="2dp" />
     </LinearLayout>
 
     <!-- Done Button -->
