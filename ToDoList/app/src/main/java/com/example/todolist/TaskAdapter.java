@@ -15,9 +15,11 @@ import java.util.List;
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     private List<Task> taskList;
+    private TaskRepository taskRepository;
 
-    public TaskAdapter(List<Task> taskList) {
+    public TaskAdapter(List<Task> taskList, TaskRepository taskRepository) {
         this.taskList = taskList;
+        this.taskRepository = taskRepository;
     }
 
     @NonNull
@@ -48,14 +50,24 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         // Delete button
         holder.buttonDelete.setOnClickListener(v -> {
-            taskList.remove(holder.getAdapterPosition());
-            notifyItemRemoved(holder.getAdapterPosition());
+            int pos = holder.getAdapterPosition();
+            Task t = taskList.get(pos);
+            if (taskRepository != null && t.getId() != -1) {
+                taskRepository.deleteTask(t.getId());
+            }
+            taskList.remove(pos);
+            notifyItemRemoved(pos);
         });
 
         // Done button
         holder.buttonDone.setOnClickListener(v -> {
-            task.setDone(!task.isDone());
-            notifyItemChanged(holder.getAdapterPosition());
+            int pos = holder.getAdapterPosition();
+            Task t = taskList.get(pos);
+            t.setDone(!t.isDone());
+            if (taskRepository != null && t.getId() != -1) {
+                taskRepository.updateTaskIsDone(t.getId(), t.isDone());
+            }
+            notifyItemChanged(pos);
         });
     }
 
