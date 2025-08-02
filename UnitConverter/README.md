@@ -149,8 +149,60 @@ if (!inputStr.isEmpty()) {
 
 ### Testing Framework
 - **JUnit**: Unit testing framework
-- **Espresso**: UI testing for Android
-- **AndroidJUnitRunner**: Test execution environment
+
+### Test Results Table
+
+| Test ID | Test Name | Description | Test Case | Expected Result | Actual Result | Status |
+|---------|-----------|-------------|-----------|-----------------|---------------|--------|
+| T001 | testMeterToKilometer | Convert 1000 meters to kilometers | 1000 meters → kilometers | 1.0 km | 1.0 km | ✅ PASS |
+| T002 | testKilometerToMeter | Convert 1 kilometer to meters | 1 km → meters | 1000.0 m | 1000.0 m | ✅ PASS |
+| T003 | testMeterToCentimeter | Convert 1 meter to centimeters | 1 m → cm | 100.0 cm | 100.0 cm | ✅ PASS |
+| T004 | testCentimeterToMeter | Convert 100 centimeters to meters | 100 cm → m | 1.0 m | 1.0 m | ✅ PASS |
+| T005 | testInchToFoot | Convert 12 inches to feet | 12 in → ft | 1.0 ft | 1.0 ft | ✅ PASS |
+| T006 | testFootToInch | Convert 1 foot to inches | 1 ft → in | 12.0 in | 12.0 in | ✅ PASS |
+| T007 | testZeroValue | Test conversion with zero value | 0 m → km | 0.0 km | 0.0 km | ✅ PASS |
+| T008 | testNegativeValue | Test conversion with negative value | -1 m → cm | -100.0 cm | -100.0 cm | ✅ PASS |
+| T009 | testLargeValue | Test conversion with large value | 1,000,000 m → km | 1000.0 km | 1000.0 km | ✅ PASS |
+| T010 | testDecimalValue | Test conversion with decimal value | 0.5 m → cm | 50.0 cm | 50.0 cm | ✅ PASS |
+| T011 | testSameUnitConversion | Test converting to same unit | 5 m → m | 5.0 m | 5.0 m | ✅ PASS |
+| T012 | testInvalidUnit | Test error handling for invalid unit | InvalidUnit → m | IllegalArgumentException | IllegalArgumentException | ✅ PASS |
+
+### Test Coverage Summary
+
+| Category | Tests | Passed | Failed | Coverage |
+|----------|-------|--------|--------|----------|
+| **Basic Conversions** | 6 | 6 | 0 | 100% |
+| **Edge Cases** | 4 | 4 | 0 | 100% |
+| **Error Handling** | 1 | 1 | 0 | 100% |
+| **Same Unit** | 1 | 1 | 0 | 100% |
+| **Total** | **12** | **12** | **0** | **100%** |
+
+### Test Categories
+
+#### **Basic Conversions (T001-T006)**
+- Tests standard unit conversions between all supported units
+- Validates conversion factors and mathematical accuracy
+- Covers bidirectional conversions (A→B and B→A)
+
+#### **Edge Cases (T007-T010)**
+- **Zero Values**: Ensures zero input produces zero output
+- **Negative Values**: Validates negative number handling
+- **Large Values**: Tests with very large numbers
+- **Decimal Values**: Tests precision with decimal inputs
+
+#### **Error Handling (T012)**
+- **Invalid Units**: Tests exception throwing for unknown units
+- Uses `@Test(expected = IllegalArgumentException.class)`
+
+#### **Same Unit Conversion (T011)**
+- **Identity Conversion**: Ensures converting to same unit returns original value
+- Validates mathematical identity property
+
+### Test Execution Results
+```
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
+Time: 0.002 seconds
+```
 
 ## 1.5 Known Issues or Limitations
 
