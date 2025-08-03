@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     TaskAdapter taskAdapter;
     ArrayList<Task> taskList;
     public static final int ADD_TASK_REQUEST = 1;
+    TaskRepository taskRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
         buttonAdd = findViewById(R.id.buttonAdd);
         recyclerView = findViewById(R.id.recyclerViewTasks);
 
-        taskList = new ArrayList<>();
-        taskAdapter = new TaskAdapter(taskList);
+        taskRepository = new TaskRepository(this);
+        taskList = new ArrayList<>(taskRepository.getAllTasks());
+        taskAdapter = new TaskAdapter(taskList, taskRepository);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(taskAdapter);
 
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
             String duration = data.getStringExtra("task_duration");
 
             Task task = new Task(title, desc, deadline, duration);
+            long id = taskRepository.insertTask(task);
+            task.setId((int) id);
             taskAdapter.addTask(task);
         }
     }
