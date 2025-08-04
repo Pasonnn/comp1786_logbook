@@ -1,3 +1,5 @@
+// app/src/main/java/com/example/todolist/MainActivity.java
+
 package com.example.todolist;
 
 import android.content.Intent;
